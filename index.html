@@ -93,7 +93,7 @@
     <div class="card">
         <div class="profile-placeholder">FR</div>
         <h2>Rubio Florian</h2>
-        <h3>Commercial Sédentaire - Klima Riv'Air</h3>
+        <h3>Commercial Itinerant - Klima Riv'Air</h3>
         <a class="button" href="tel:0677467457">📞 06 77 46 74 57</a>
         <a class="button" href="mailto:florian.rubio@klima-rivair.fr">✉️ florian.rubio@klima-rivair.fr</a>
         <a class="button" href="https://klima-rivair.fr" target="_blank">🌐 Site Web</a>
@@ -109,7 +109,7 @@
                     reader.readAsDataURL(blob);
                     reader.onloadend = function () {
                         const base64Data = reader.result.split(",")[1];
-                        const vCardData = `BEGIN:VCARD\nVERSION:3.0\nN:Rubio;Florian\nFN:Florian Rubio\nORG:Klima Riv'Air\nTITLE:Commercial Sédentaire\nTEL;TYPE=cell:0677467457\nEMAIL:florian.rubio@klima-rivair.fr\nURL:https://klima-rivair.fr\nADR;TYPE=work:;;62 impasse de lespinasse;31140;Aucamville\nPHOTO;ENCODING=b;TYPE=JPEG:${base64Data}\nEND:VCARD`;
+                        const vCardData = `BEGIN:VCARD\nVERSION:3.0\nN:Rubio;Florian\nFN:Florian Rubio\nORG:Klima Riv'Air\nTITLE:Commercial Itinérant\nTEL;TYPE=cell:0677467457\nEMAIL:florian.rubio@klima-rivair.fr\nURL:https://klima-rivair.fr\nADR;TYPE=work:;;62 impasse de lespinasse;31140;Aucamville\nPHOTO;ENCODING=b;TYPE=JPEG:${base64Data}\nEND:VCARD`;
                         const vCardEncoded = encodeURIComponent(vCardData);
                         const vCardBlob = `data:text/vcard;charset=utf-8,${vCardEncoded}`;
                         const link = document.createElement("a");
