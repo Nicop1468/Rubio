@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte de Visite - Florian Rubio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000;
+            --text-color: #FFD700;
+            --card-bg: linear-gradient(135deg, #111, #222);
+        }
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-color: #fff;
+                --text-color: #000;
+                --card-bg: linear-gradient(135deg, #ddd, #eee);
+            }
+        }
+        html, body {
+            height: 100%;
+            min-height: 100vh;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            text-align: center;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            max-width: 90vw;
+            width: 380px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .profile-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            font-size: 40px;
+            font-weight: bold;
+            margin: 15px auto;
+            border: 3px solid var(--text-color);
+        }
+        .button {
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 12px;
+            margin: 12px auto;
+            border-radius: 8px;
+            cursor: pointer;
+            display: block;
+            text-decoration: none;
+            font-weight: bold;
+            width: 80%;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .button:hover {
+            background: #e6c300;
+            transform: scale(1.05);
+        }
+        .button:active {
+            transform: scale(0.95);
+        }
+        iframe {
+            width: 100%;
+            height: 220px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="profile-placeholder">FR</div>
+        <h2>Rubio Florian</h2>
+        <h3>Commercial Sédentaire - Klima Riv'Air</h3>
+        <a class="button" href="tel:0677467457">📞 06 77 46 74 57</a>
+        <a class="button" href="mailto:florian.rubio@klima-rivair.fr">✉️ florian.rubio@klima-rivair.fr</a>
+        <a class="button" href="https://klima-rivair.fr" target="_blank">🌐 Site Web</a>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2888.2220591329933!2d1.4128476763032418!3d43.67237925294717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aea5f1e5a6b7d9%3A0x358761d0568f6c13!2s62%20Imp.%20de%20Lespinasse%2C%2031140%20Aucamville%2C%20France!5e0!3m2!1sfr!2sfr!4v1710880000000!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy"></iframe>
+        <a class="button" id="saveContact" href="#">💾 Enregistrer le contact</a>
+    </div>
+    <script>
+        document.getElementById("saveContact").addEventListener("click", function() {
+            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nN:Rubio;Florian\nFN:Florian Rubio\nORG:Klima Riv'Air\nTITLE:Commercial Sédentaire\nTEL;TYPE=cell:0677467457\nEMAIL:florian.rubio@klima-rivair.fr\nURL:https://klima-rivair.fr\nADR;TYPE=work:;;62 impasse de lespinasse;31140;Aucamville\nEND:VCARD`;
+            const vCardBlob = new Blob([vCardData], { type: "text/vcard" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(vCardBlob);
+            link.download = "contact.vcf";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+</html>
