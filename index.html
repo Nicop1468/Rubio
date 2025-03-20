@@ -102,14 +102,25 @@
     </div>
     <script>
         document.getElementById("saveContact").addEventListener("click", function() {
-            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nN:Rubio;Florian\nFN:Florian Rubio\nORG:Klima Riv'Air\nTITLE:Commercial Sédentaire\nTEL;TYPE=cell:0677467457\nEMAIL:florian.rubio@klima-rivair.fr\nURL:https://klima-rivair.fr\nADR;TYPE=work:;;62 impasse de lespinasse;31140;Aucamville\nEND:VCARD`;
-            const vCardBlob = new Blob([vCardData], { type: "text/vcard" });
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(vCardBlob);
-            link.download = "contact.vcf";
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            fetch("ton-image.jpg")
+                .then(response => response.blob())
+                .then(blob => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function () {
+                        const base64Data = reader.result.split(",")[1];
+                        const vCardData = `BEGIN:VCARD\nVERSION:3.0\nN:Rubio;Florian\nFN:Florian Rubio\nORG:Klima Riv'Air\nTITLE:Commercial Sédentaire\nTEL;TYPE=cell:0677467457\nEMAIL:florian.rubio@klima-rivair.fr\nURL:https://klima-rivair.fr\nADR;TYPE=work:;;62 impasse de lespinasse;31140;Aucamville\nPHOTO;ENCODING=b;TYPE=JPEG:${base64Data}\nEND:VCARD`;
+                        const vCardEncoded = encodeURIComponent(vCardData);
+                        const vCardBlob = `data:text/vcard;charset=utf-8,${vCardEncoded}`;
+                        const link = document.createElement("a");
+                        link.href = vCardBlob;
+                        link.download = "contact.vcf";
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    };
+                })
+                .catch(error => console.error("Erreur lors du chargement de l'image :", error));
         });
     </script>
 </body>
