@@ -43,18 +43,13 @@
             width: 380px;
             animation: fadeIn 1s ease-in-out;
         }
-        .profile-placeholder {
+        .profile-img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            font-size: 40px;
-            font-weight: bold;
+            object-fit: cover;
             margin: 15px auto;
+            display: block;
             border: 3px solid var(--text-color);
         }
         .button {
@@ -64,11 +59,17 @@
             margin: 12px auto;
             border-radius: 8px;
             cursor: pointer;
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             text-decoration: none;
             font-weight: bold;
             width: 80%;
             transition: background 0.3s, transform 0.2s;
+        }
+        .button i {
+            font-size: 18px;
         }
         .button:hover {
             background: #e6c300;
